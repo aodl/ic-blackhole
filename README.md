@@ -16,7 +16,7 @@ To do this, we can verify hash of Wasm binary from three sources: built by githu
 $ curl -Ls https://github.com/ninegua/ic-blackhole/releases/download/0.0.0/blackhole-opt.wasm|sha256sum
 210cf941e5ca77daac314a91517483ac171264527e3d0d713b92bb95239d7de0  -
 
-$ cat $(nix-build 2>/dev/null)/bin/blackhole-opt.wasm |sha256sum
+$ cat "$(make repro-build)"/bin/blackhole-opt.wasm | sha256sum
 210cf941e5ca77daac314a91517483ac171264527e3d0d713b92bb95239d7de0  -
 
 $ make dfx.json && dfx canister --network=ic --no-wallet info $(cat canister_ids.json|jq -r '.blackhole.ic')
